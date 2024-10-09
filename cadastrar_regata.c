@@ -4,6 +4,7 @@
 
 #define QUANTIDADE 3
 
+//evitar comportamentos inesperados do sistema
 void limpar_buffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
@@ -17,9 +18,9 @@ int verificar_regata(Regata regatas[], int num) {
     }
     return -1;  
 }
-
 // Função para listar as regatas
 void listar_regata(Regata *regata) {
+
     for (int i = 0; i < QUANTIDADE; i++) {
         printf("Exibindo informações da regata %d:\n", i + 1);
         printf("Número da Regata: %d\n", regata[i].numero_regata);
@@ -29,7 +30,6 @@ void listar_regata(Regata *regata) {
         printf("------------------------------------------\n");
     }
 }
-
 // Função para buscar regata por número
 void buscar_regata(Regata regata[]) {
     int num;
@@ -48,9 +48,9 @@ void buscar_regata(Regata regata[]) {
         puts("Regata não encontrada.");
     }
 }
-
 // Função para editar regata
 void editar_regata(Regata regata[]) {
+
     int num;
     puts("Digite o número da regata que deseja editar:");
     scanf("%d", &num);
@@ -60,7 +60,8 @@ void editar_regata(Regata regata[]) {
     if (indice != -1) {
         printf("Editando regata número: %d\n", num);
 
-        getchar();  
+        getchar(); 
+
         puts("Digite a nova data (dd/mm/aaaa):");
         scanf("%[^\n]%*c", regata[indice].data);
         

@@ -5,10 +5,9 @@
 #define max_regatas 3
 #define quantidade_barcos 6
 
-
+//Verificar se a regata esta no sistema
 int verificar_existe_regata(Regata regata[], int numero_regata){
     for(int i=0; i<max_regatas; i++){
-        printf("AAAAAA: %d\n", regata[i].numero_regata);
         if(regata[i].numero_regata == numero_regata){
             return 1;
         }
@@ -16,6 +15,7 @@ int verificar_existe_regata(Regata regata[], int numero_regata){
     return 0;
 }
 
+//verificar se o barco esta no sistema
 int verificar_existe_barco(Barco barco[], int numero_barco){
     for(int i=0; i<quantidade_barcos; i++){
         if(barco[i].numero_barco == numero_barco){
@@ -25,6 +25,7 @@ int verificar_existe_barco(Barco barco[], int numero_barco){
     return 0;
 }
 
+//verificar se o barco ja esta cadastrado naquela regata
 int verificar_participante(Participante participantes[], int total_participantes, int numero_regata, int numero_barco) {
 
     for (int i = 0; i < total_participantes; i++) {
@@ -35,6 +36,7 @@ int verificar_participante(Participante participantes[], int total_participantes
     return 0; 
 }
 
+//verificar se a regata já atingiu o limite de participantes
 int contar_barcos_por_regata(Participante participantes[], int num_participantes, int numero_regata) {
     int count = 0;
     for (int i = 0; i < num_participantes; i++) {
@@ -45,6 +47,7 @@ int contar_barcos_por_regata(Participante participantes[], int num_participantes
     return count;
 }
 
+//cadastrar os participantes
 void cadastro_participantes(Participante participante[], Regata regata[], Barco barco[], int *total_participantes){
     int numero_regata, numero_barco;
 
