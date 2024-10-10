@@ -2,8 +2,14 @@
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
 #include "constantes.h"
+#include <locale.h>
+#include <windows.h>
 
 int main(){
+
+    SetConsoleOutputCP(CP_UTF8);
+    setlocale(LC_ALL,"pt_BR.UTF-8");
+    
     int opcao, continuar = 1;
 
     Regata regatas[TOTAL_REGATAS];   
