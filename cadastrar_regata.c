@@ -1,15 +1,40 @@
 #include <stdio.h>
+#include <string.h> // Inclua para usar strlen
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
 #include "constantes.h"
 
-//evitar comportamentos inesperados do sistema
+// Evitar comportamentos inesperados do sistema
 void limpar_buffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-//verificar se a regata consta no sistema
+// Função que verifica se o horário está no formato HH:MM
+int verificar_formato_horario(const char *horario) {
+    // Verifica se a string tem exatamente 5 caracteres
+    if (strlen(horario) != 5) {
+        return 0; // Retorna 0 se não tiver 5 caracteres
+    }
+
+    // Verifica se o terceiro caractere é ':'
+    if (horario[2] != ':') {
+        return 0; // Retorna 0 se o caractere na posição 2 não for ':'
+    }
+
+    // Converte as horas e minutos para inteiros
+    int horas = (horario[0] - '0') * 10 + (horario[1] - '0'); // Converte horas para inteiro
+    int minutos = (horario[3] - '0') * 10 + (horario[4] - '0'); // Converte minutos para inteiro
+
+    // Verifica se as horas estão entre 0 e 23 e os minutos entre 0 e 59
+    if (horas < 0 || horas > 23 || minutos < 0 || minutos > 59) {
+        return 0; // Retorna 0 se horas ou minutos estiverem fora do intervalo
+    }
+
+    return 1; // Retorna 1 se o formato for válido
+}
+
+// Verificar se a regata já está no sistema
 int verificar_regata(Regata regatas[], int num) {
     for (int i = 0; i < TOTAL_REGATAS; i++) {
         if (regatas[i].numero_regata == num) {
@@ -21,7 +46,6 @@ int verificar_regata(Regata regatas[], int num) {
 
 // Função para listar as regatas
 void listar_regata(Regata *regata) {
-
     for (int i = 0; i < TOTAL_REGATAS; i++) {
         printf("Exibindo informações da regata %d:\n", i + 1);
         printf("Número da Regata: %d\n", regata[i].numero_regata);
@@ -31,7 +55,8 @@ void listar_regata(Regata *regata) {
         printf("------------------------------------------\n");
     }
 }
-// Função para buscar regata pelo número
+
+// Função para buscar regata por número
 void buscar_regata(Regata regata[]) {
     int num;
     puts("Digite o número da regata que deseja buscar:");
@@ -52,7 +77,6 @@ void buscar_regata(Regata regata[]) {
 
 // Função para editar regata
 void editar_regata(Regata regata[]) {
-
     int num;
     puts("Digite o número da regata que deseja editar:");
     scanf("%d", &num);
@@ -67,8 +91,15 @@ void editar_regata(Regata regata[]) {
         puts("Digite a nova data (dd/mm/aaaa):");
         scanf("%[^\n]%*c", regata[indice].data);
         
-        puts("Digite a nova hora de início (hh:mm):");
-        scanf("%[^\n]%*c", regata[indice].hora_inicio);
+        do {
+            puts("Digite a nova hora de início (hh:mm):");
+            scanf("%[^\n]%*c", regata[indice].hora_inicio);
+            
+            // Verifica se a hora está no formato correto
+            if (!verificar_formato_horario(regata[indice].hora_inicio)) {
+                puts("Formato de hora inválido. Tente novamente.");
+            }
+        } while (!verificar_formato_horario(regata[indice].hora_inicio)); // Repete até o formato ser válido
 
         puts("Digite o novo código do barco vencedor:");
         scanf("%d", &regata[indice].codigo_barco_vencedor);  
@@ -100,8 +131,15 @@ void cadastrar(Regata regata[]) {
         puts("Digite a data no formato (dd/mm/aaaa): ");
         scanf("%[^\n]%*c", regata[i].data);
 
-        puts("Digite a hora de início (hh:mm): ");
-        scanf("%[^\n]%*c", regata[i].hora_inicio);
+        do {
+            puts("Digite a hora de início (hh:mm): ");
+            scanf("%[^\n]%*c", regata[i].hora_inicio);
+            
+            // Verifica se a hora está no formato correto
+            if (!verificar_formato_horario(regata[i].hora_inicio)) {
+                puts("Formato de hora inválido. Tente novamente.");
+            }
+        } while (!verificar_formato_horario(regata[i].hora_inicio)); // Repete até o formato ser válido
 
         puts("Digite o código do barco vencedor: ");
         scanf("%d", &regata[i].codigo_barco_vencedor);  

@@ -1,41 +1,40 @@
 #include <stdio.h>
+#include <string.h>
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
 #include "constantes.h"
 
-
-//Verificar se a regata esta no sistema
-int verificar_existe_regata(Regata regata[], int numero_regata){
-    for(int i=0; i<TOTAL_REGATAS; i++){
-        if(regata[i].numero_regata == numero_regata){
+// Verificar se a regata está no sistema
+int verificar_existe_regata(Regata regata[], int numero_regata) {
+    for (int i = 0; i < TOTAL_REGATAS; i++) {
+        if (regata[i].numero_regata == numero_regata) {
             return 1;
         }
     }
     return 0;
 }
 
-//verificar se o barco esta no sistema
-int verificar_existe_barco(Barco barco[], int numero_barco){
-    for(int i=0; i<TOTAL_BARCOS; i++){
-        if(barco[i].numero_barco == numero_barco){
+// Verificar se o barco está no sistema
+int verificar_existe_barco(Barco barco[], int numero_barco) {
+    for (int i = 0; i < TOTAL_BARCOS; i++) {
+        if (barco[i].numero_barco == numero_barco) {
             return 1;
         }
     }
     return 0;
 }
 
-//verificar se o barco ja esta cadastrado naquela regata
+// Verificar se o barco já está cadastrado naquela regata
 int verificar_participante(Participante participantes[], int total_participantes, int numero_regata, int numero_barco) {
-
     for (int i = 0; i < total_participantes; i++) {
         if (participantes[i].numero_regata == numero_regata && participantes[i].numero_barco == numero_barco) {
-            return 1; 
+            return 1;
         }
     }
-    return 0; 
+    return 0;
 }
 
-//verificar se a regata já atingiu o limite de participantes
+// Verificar se a regata já atingiu o limite de participantes
 int contar_barcos_por_regata(Participante participantes[], int num_participantes, int numero_regata) {
     int count = 0;
     for (int i = 0; i < num_participantes; i++) {
@@ -46,7 +45,8 @@ int contar_barcos_por_regata(Participante participantes[], int num_participantes
     return count;
 }
 
-//cadastrar os participantes
+
+// Cadastrar os participantes
 void cadastro_participantes(Participante participante[], Regata regata[], Barco barco[], int *total_participantes) {
     int numero_regata, numero_barco;
 
@@ -56,11 +56,10 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
     printf("Digite o número do barco: ");
     scanf("%d", &numero_barco);
 
-    if(verificar_existe_regata(regata, numero_regata) && verificar_existe_barco(barco, numero_barco)){
-
+    if (verificar_existe_regata(regata, numero_regata) && verificar_existe_barco(barco, numero_barco)) {
         if (verificar_participante(participante, *total_participantes, numero_regata, numero_barco)) {
             puts("Esse barco já está cadastrado para esta regata.");
-            return; // encerrar a execução de uma função e retornar ao ponto onde a função foi chamada
+            return; // Encerrar a execução de uma função e retornar ao ponto onde a função foi chamada
         }
 
         // Verifica se o número máximo de participantes foi atingido
@@ -69,26 +68,35 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
             return;
         }
 
-        // Registra o novo participante
+        // Registrar o novo participante
         participante[*total_participantes].numero_regata = numero_regata;
         participante[*total_participantes].numero_barco = numero_barco;
 
+        char hora_chegada[6]; // String para armazenar a hora de chegada
         printf("Digite a hora de chegada (hh:mm): ");
-        scanf("%s", participante[*total_participantes].hora_chegada);
+        scanf("%s", hora_chegada);
 
-        (*total_participantes)++; 
+        // Verifica se a hora está no formato correto
+        if (!verificar_formato_horario(hora_chegada)) {
+            puts("Formato de hora inválido. A hora deve estar no formato hh:mm.");
+            return; // Retorna se o formato for inválido
+        }
+
+        // Armazena a hora de chegada
+        strcpy(participante[*total_participantes].hora_chegada, hora_chegada);
+
+        (*total_participantes)++;
         puts("Participante cadastrado com sucesso!");
 
     } else {
-        puts("O número da regata digitada e o número do barco digitado não constam no sistema. Lembre-se de cadastrá-los antes de cadastrar os participantes");
+        puts("O número da regata digitada e o número do barco digitado não constam no sistema. Lembre-se de cadastrá-los antes de cadastrar os participantes.");
     }
 }
-
 
 void cadastrar_participantes(Participante participante[], Regata regata[], Barco barco[]) {
     int total_participantes = 0, continuar = 1, opcao;
 
-    while(continuar){
+    while (continuar) {
         cadastro_participantes(participante, regata, barco, &total_participantes);
 
         printf("Deseja cadastrar outro participante? (1 - Sim, 0 - Não): ");
