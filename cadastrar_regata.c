@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h> // Inclua para usar strlen
+#include <string.h>
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
 #include "constantes.h"
