@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
-#define max_regatas 4
-#define max_barcos 6
+#include "constantes.h"
 
 int main(){
     int opcao, continuar = 1;
 
-    Regata regatas[max_regatas];   
-    Barco barcos[max_barcos];
-    
+    Regata regatas[TOTAL_REGATAS];   
+    Barco barcos[TOTAL_BARCOS];
+    Participante participantes[TOTAL_REGATAS * TOTAL_BARCOS_POR_REGATA];
 
     printf("BEM VINDO AO PAGO BEM!\n");
 
@@ -43,7 +42,7 @@ int main(){
                 break;
 
             case 3:
-                cadastrar_participantes(regatas, barcos);  
+                cadastrar_participantes(participantes, regatas, barcos);  
                 break;
 
             case 4:
@@ -51,7 +50,7 @@ int main(){
                 break;
 
             case 5:
-                //desenvolver  
+                listar_participantes_com_tempo(participantes, regatas);
                 break;
 
             case 6:

@@ -1,11 +1,12 @@
 #include "minhas_funcoes.h"
 #include <stdio.h>
 #include "regatas_barcos.h"
-#define quantidade 6
+#include "constantes.h"
+
 
 int verificar_numero(Barco barco[], int num){
 
-    for(int i=0; i<quantidade; i++){
+    for(int i=0; i<TOTAL_BARCOS; i++){
 
         if(barco[i].numero_barco == num){
             return 1;
@@ -16,7 +17,7 @@ int verificar_numero(Barco barco[], int num){
 
 void cadastro(Barco barco[]){
 
-    for(int i = 0; i < quantidade; i++) {
+    for(int i = 0; i < TOTAL_BARCOS; i++) {
         int num;
         int retorno_scanf;
 
@@ -46,7 +47,7 @@ void cadastro(Barco barco[]){
 
 void listar_barcos(Barco barco[]){
 
-    for(int i=0; i<quantidade; i++){
+    for(int i=0; i<TOTAL_BARCOS; i++){
 
         printf("\nExibindo informações do barco %d:\n", i + 1); 
         printf("Número do barco: %d\n", barco[i].numero_barco);
@@ -63,7 +64,7 @@ void buscar_barco(Barco barco[]){
     scanf("%d", &num_barco);
 
     if (verificar_numero(barco, num_barco)) {
-        for (int i = 0; i < quantidade; i++) {
+        for (int i = 0; i < TOTAL_BARCOS; i++) {
             if (barco[i].numero_barco == num_barco) {
                 printf("Número do barco: %d\n", barco[i].numero_barco);
                 printf("Nome do barco: %s\n", barco[i].nome_barco);
@@ -86,7 +87,7 @@ void editar_barco(Barco barco[]) {
     num_barco--;  // Subtrai 1 para mapear para o índice correto no array
 
     // Verifica se o índice é válido
-    if (num_barco >= 0 && num_barco < quantidade) {
+    if (num_barco >= 0 && num_barco < TOTAL_BARCOS) {
         printf("Barco selecionado: %d\n", barco[num_barco].numero_barco);
         
         //validacao para garantir que o novo número do barco nao seja duplicado

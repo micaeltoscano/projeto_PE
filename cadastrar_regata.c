@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
-
-#define QUANTIDADE 3
+#include "constantes.h"
 
 //evitar comportamentos inesperados do sistema
 void limpar_buffer() {
@@ -11,7 +10,7 @@ void limpar_buffer() {
 }
 
 int verificar_regata(Regata regatas[], int num) {
-    for (int i = 0; i < QUANTIDADE; i++) {
+    for (int i = 0; i < TOTAL_REGATAS; i++) {
         if (regatas[i].numero_regata == num) {
             return i;  
         }
@@ -21,7 +20,7 @@ int verificar_regata(Regata regatas[], int num) {
 // Função para listar as regatas
 void listar_regata(Regata *regata) {
 
-    for (int i = 0; i < QUANTIDADE; i++) {
+    for (int i = 0; i < TOTAL_REGATAS; i++) {
         printf("Exibindo informações da regata %d:\n", i + 1);
         printf("Número da Regata: %d\n", regata[i].numero_regata);
         printf("Data: %s\n", regata[i].data);
@@ -79,7 +78,7 @@ void editar_regata(Regata regata[]) {
 
 // Função para cadastrar regatas
 void cadastrar(Regata regata[]) {
-    for (int i = 0; i < QUANTIDADE; i++) {
+    for (int i = 0; i < TOTAL_REGATAS; i++) {
         int num_regata;
 
         do {

@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include "minhas_funcoes.h"
 #include "regatas_barcos.h"
-#define max_barcos 4
-#define max_regatas 3
-#define quantidade_barcos 6
+#include "constantes.h"
+
 
 //Verificar se a regata esta no sistema
 int verificar_existe_regata(Regata regata[], int numero_regata){
-    for(int i=0; i<max_regatas; i++){
+    for(int i=0; i<TOTAL_REGATAS; i++){
         if(regata[i].numero_regata == numero_regata){
             return 1;
         }
@@ -17,7 +16,7 @@ int verificar_existe_regata(Regata regata[], int numero_regata){
 
 //verificar se o barco esta no sistema
 int verificar_existe_barco(Barco barco[], int numero_barco){
-    for(int i=0; i<quantidade_barcos; i++){
+    for(int i=0; i<TOTAL_BARCOS; i++){
         if(barco[i].numero_barco == numero_barco){
             return 1;
         }
@@ -48,13 +47,8 @@ int contar_barcos_por_regata(Participante participantes[], int num_participantes
 }
 
 //cadastrar os participantes
-void cadastro_participantes(Participante participante[], Regata regata[], Barco barco[], int *total_participantes){
+void cadastro_participantes(Participante participante[], Regata regata[], Barco barco[], int *total_participantes) {
     int numero_regata, numero_barco;
-
-    if(*total_participantes > (max_barcos * max_regatas)){
-        puts("O número máximo de participantes foi alcançado! ");
-        return;
-    }
 
     printf("Digite o número da regata: ");
     scanf("%d", &numero_regata);
@@ -67,13 +61,15 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
         if (verificar_participante(participante, *total_participantes, numero_regata, numero_barco)) {
             puts("Esse barco já está cadastrado para esta regata.");
             return;
-                    }
+        }
 
-        if (contar_barcos_por_regata(participante, *total_participantes, numero_regata) >= max_barcos) {
+        // Verifica se o número máximo de participantes foi atingido
+        if (contar_barcos_por_regata(participante, *total_participantes, numero_regata) >= TOTAL_BARCOS_POR_REGATA) {
             puts("Essa regata já possui o número máximo de barcos (4).");
             return;
-                    }
+        }
 
+        // Registra o novo participante
         participante[*total_participantes].numero_regata = numero_regata;
         participante[*total_participantes].numero_barco = numero_barco;
 
@@ -83,16 +79,13 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
         (*total_participantes)++; 
         puts("Participante cadastrado com sucesso!");
 
-    }
-
-    else{
+    } else {
         puts("O número da regata digitada e o número do barco digitado não constam no sistema. Lembre-se de cadastrá-los antes de cadastrar os participantes");
     }
-
 }
 
-void cadastrar_participantes(Regata regata[], Barco barco[]) {
-    Participante participante[max_barcos * max_regatas];
+
+void cadastrar_participantes(Participante participante[], Regata regata[], Barco barco[]) {
     int total_participantes = 0, continuar = 1, opcao;
 
     while(continuar){
