@@ -60,7 +60,7 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
 
         if (verificar_participante(participante, *total_participantes, numero_regata, numero_barco)) {
             puts("Esse barco já está cadastrado para esta regata.");
-            return;
+            return; // encerrar a execução de uma função e retornar ao ponto onde a função foi chamada
         }
 
         // Verifica se o número máximo de participantes foi atingido
