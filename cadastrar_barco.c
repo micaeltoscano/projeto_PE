@@ -3,9 +3,8 @@
 #include "regatas_barcos.h"
 #include "constantes.h"
 
-
+//verificar se o barco esta no sistema
 int verificar_numero(Barco barco[], int num){
-
     for(int i=0; i<TOTAL_BARCOS; i++){
 
         if(barco[i].numero_barco == num){
@@ -21,6 +20,7 @@ void cadastro(Barco barco[]){
         int num;
         int retorno_scanf;
 
+        //uso do do-while para verificar se o codigo digitado é um inteiro e verificar se já existe um barco com aquele numero
         do {
             printf("Digite o codigo do barco %d: ", i + 1);
 
@@ -35,6 +35,7 @@ void cadastro(Barco barco[]){
             }
         } while (retorno_scanf != 1 || verificar_numero(barco, num));
 
+        //caso seja, o barco é adicionado no sistema:
         barco[i].numero_barco = num;
 
         printf("Digite o nome do barco: ");
@@ -45,6 +46,7 @@ void cadastro(Barco barco[]){
     }
 }
 
+//funcao que loopa entre os structs e exibe todos os barcos cadastrados:
 void listar_barcos(Barco barco[]){
 
     for(int i=0; i<TOTAL_BARCOS; i++){
@@ -57,12 +59,14 @@ void listar_barcos(Barco barco[]){
     }
 }
 
+//funcao para buscar um barco pelo numero dele
 void buscar_barco(Barco barco[]){
    int num_barco;
 
     puts("Digite o número do barco que deseja acessar:");
     scanf("%d", &num_barco);
 
+    //se o barco existir no sistema, ele procura por ele e exibe as informacoes dele atraves do indice
     if (verificar_numero(barco, num_barco)) {
         for (int i = 0; i < TOTAL_BARCOS; i++) {
             if (barco[i].numero_barco == num_barco) {
@@ -73,15 +77,18 @@ void buscar_barco(Barco barco[]){
             }
         }
     }
+
+    //caso contrario exibe uma mensagem de erro
     else{
         printf("Barco não foi encontrado!");
     }
 }
 
+//funcao para editar informações de um barco
 void editar_barco(Barco barco[]) {
     int num_barco, novo_num;
     
-    puts("Digite o número do barco a ser editado (considere 1 para o primeiro barco): ");
+    puts("Digite o número do barco a ser editado (considere 1 para o primeiro barco): "); //nesse caso, o usuario procura o barco pelo seu indice
     scanf("%d", &num_barco);
 
     num_barco--;  // Subtrai 1 para mapear para o índice correto no array
@@ -104,7 +111,7 @@ void editar_barco(Barco barco[]) {
         barco[num_barco].numero_barco = novo_num;
 
         // Limpa o buffer após a leitura de número
-        while (getchar() != '\n');
+        while (getchar() != '\n'); 
 
         // Solicita o novo nome do barco
         printf("Digite o novo nome do barco %d (atualmente %s): ", num_barco + 1, barco[num_barco].nome_barco);
@@ -121,6 +128,7 @@ void editar_barco(Barco barco[]) {
     }
 }
 
+//funcao que cadastra o barco e exibe a quantidade de opcoes que o usuario tem dentro do sistema de cadastrar barcos.
 void cadastrar_barco(Barco barco[]){
 
     int opcao_cadastrar_barco, continuar_cadastrar_barco = 0;

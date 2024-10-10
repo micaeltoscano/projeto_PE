@@ -9,6 +9,7 @@ void limpar_buffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+//verificar se a regata consta no sistema
 int verificar_regata(Regata regatas[], int num) {
     for (int i = 0; i < TOTAL_REGATAS; i++) {
         if (regatas[i].numero_regata == num) {
@@ -17,6 +18,7 @@ int verificar_regata(Regata regatas[], int num) {
     }
     return -1;  
 }
+
 // Função para listar as regatas
 void listar_regata(Regata *regata) {
 
@@ -29,7 +31,7 @@ void listar_regata(Regata *regata) {
         printf("------------------------------------------\n");
     }
 }
-// Função para buscar regata por número
+// Função para buscar regata pelo número
 void buscar_regata(Regata regata[]) {
     int num;
     puts("Digite o número da regata que deseja buscar:");
@@ -47,6 +49,7 @@ void buscar_regata(Regata regata[]) {
         puts("Regata não encontrada.");
     }
 }
+
 // Função para editar regata
 void editar_regata(Regata regata[]) {
 
