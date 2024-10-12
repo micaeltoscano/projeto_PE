@@ -1,0 +1,66 @@
+Código do Barco 0: 10
+Nome do Barco 0: sergio
+Ano de fabricação do barco 0: 2005
+Código do Barco 1: 20
+Nome do Barco 1: micael
+Ano de fabricação do barco 1: 2005
+Código do Barco 2: 30
+Nome do Barco 2: hugo
+Ano de fabricação do barco 2: 2005
+Código do Barco 3: 40
+Nome do Barco 3: rafael
+Ano de fabricação do barco 3: 2004
+Código do Barco 4: 50
+Nome do Barco 4: kerlon
+Ano de fabricação do barco 4: 2013
+Código do Barco 5: 60
+Nome do Barco 5: renato
+Ano de fabricação do barco 5: 2006
+Número da Regata 0: 1
+Data da Regata 0: 12/12/2012
+Hora de Início da Regata 0: 12:00
+Código do Barco Vencedor da Regata 0: 10
+Número da Regata 1: 2
+Data da Regata 1: 13/10/2013
+Hora de Início da Regata 1: 13:00
+Código do Barco Vencedor da Regata 1: 20
+Número da Regata 2: 3
+Data da Regata 2: 11/11/2022
+Hora de Início da Regata 2: 14:00
+Código do Barco Vencedor da Regata 2: 30
+Número da Regata do Participante 0: 1
+Número do Barco do Participante 0: 10
+Hora de Chegada do Participante 0: 12:10
+Número da Regata do Participante 1: 1
+Número do Barco do Participante 1: 20
+Hora de Chegada do Participante 1: 12:20
+Número da Regata do Participante 2: 1
+Número do Barco do Participante 2: 30
+Hora de Chegada do Participante 2: 12:45
+Número da Regata do Participante 3: 1
+Número do Barco do Participante 3: 40
+Hora de Chegada do Participante 3: 15:44
+Número da Regata do Participante 4: 2
+Número do Barco do Participante 4: 20
+Hora de Chegada do Participante 4: 14:13
+Número da Regata do Participante 5: 2
+Número do Barco do Participante 5: 30
+Hora de Chegada do Participante 5: 12:34
+Número da Regata do Participante 6: 2
+Número do Barco do Participante 6: 40
+Hora de Chegada do Participante 6: 15:13
+Número da Regata do Participante 7: 2
+Número do Barco do Participante 7: 50
+Hora de Chegada do Participante 7: 13:12
+Número da Regata do Participante 8: 3
+Número do Barco do Participante 8: 30
+Hora de Chegada do Participante 8: 15:14
+Número da Regata do Participante 9: 3
+Número do Barco do Participante 9: 40
+Hora de Chegada do Participante 9: 12:34
+Número da Regata do Participante 10: 3
+Número do Barco do Participante 10: 50
+Hora de Chegada do Participante 10: 16:13
+Número da Regata do Participante 11: 3
+Número do Barco do Participante 11: 60
+Hora de Chegada do Participante 11: 19:46

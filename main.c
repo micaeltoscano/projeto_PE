@@ -6,14 +6,14 @@
 #include <locale.h>
 #include <windows.h>
 
+
 int main(){
 
-    
     SetConsoleOutputCP(CP_UTF8);
     setlocale(LC_ALL,"pt_BR.UTF-8");
 
     //criacao da variavel para continuar o loop do menu
-    int opcao, continuar = 1;
+    int opcao = 0, continuar = 1;
 
     //chamada das structs, cada uma com a quantidade respectiva de regatas, barcos e a quantidade total de participantes
     Regata regatas[TOTAL_REGATAS];   
@@ -32,16 +32,19 @@ int main(){
             printf("3 - Cadastrar participantes\n");
             printf("4 - Lista de vencedores\n");
             printf("5 - Lista de barcos em determinada regata\n");
-            printf("6 - Sair\n");
+            printf("6 - Salvar Dados Cadastrados\n");
+            printf("7 - Carregar Dados Salvos\n");
+            printf("8 - Mostrar Dados Carregados\n");
+            printf("9 - Sair\n");
             printf("Escolha uma opção: ");
 
             scanf("%d", &opcao);
 
-            if (opcao < 1 || opcao > 6) {
+            if (opcao < 1 || opcao > 9) {
                 puts("Opção inválida. Tente novamente.");
             }
 
-        } while (opcao < 1 || opcao > 6);
+        } while (opcao < 1 || opcao > 9);
 
         //criacao do switch para mapear escolhas do usuario
          switch (opcao) {
@@ -66,7 +69,21 @@ int main(){
                 break;
 
             case 6:
-                continuar = 0;  
+                salvarDados(regatas, barcos, participantes, TOTAL_REGATAS, TOTAL_BARCOS, TOTAL_REGATAS * TOTAL_BARCOS_POR_REGATA);
+                break;
+
+            case 7:
+                carregarDados(regatas, barcos, participantes, TOTAL_REGATAS, TOTAL_BARCOS, TOTAL_REGATAS * TOTAL_BARCOS_POR_REGATA);
+                break;
+
+            case 8:
+                listar_barcos(barcos);
+                listar_regata(regatas);
+                listar_participantes(participantes,TOTAL_PARTICIPANTES);
+                break;
+
+            case 9:
+                continuar = 0;
                 break;
 
             default:

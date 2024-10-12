@@ -55,7 +55,7 @@ void cadastro_participantes(Participante participante[], Regata regata[], Barco 
 
     printf("Digite o número do barco: ");
     scanf("%d", &numero_barco);
-
+    
     // Verifica se a regata e o barco existem
     if (!verificar_existe_regata(regata, numero_regata) || !verificar_existe_barco(barco, numero_barco)) {
         puts("O número da regata ou do barco digitado não constam no sistema. Tente novamente.");
@@ -102,15 +102,19 @@ void cadastrar_participantes(Participante participante[], Regata regata[], Barco
         cadastro_participantes(participante, regata, barco, &total_participantes);
 
         // Perguntar se deseja cadastrar outro participante
-        if (total_participantes < TOTAL_BARCOS_POR_REGATA) {
+        if (total_participantes < TOTAL_PARTICIPANTES) {
             printf("Deseja cadastrar outro participante? (1 - Sim, 0 - Não): ");
             scanf("%d", &continuar);
         } else {
-            puts("Limite de participantes atingido.");
-            continuar = 0; // Encerra o loop se o limite for atingido
+            puts("Limite de participantes atingido.\n");
+            printf("Deseja cadastrar outro participante? (1 - Sim, 0 - Não): ");
+            scanf("%d", &continuar);
+            
         }
     }
 
+}
+void listar_participantes(Participante participante[], int total_participantes) {
     // Exibir participantes cadastrados
     puts("Participantes cadastrados:");
     for (int i = 0; i < total_participantes; i++) {
