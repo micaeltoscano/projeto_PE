@@ -6,8 +6,9 @@
 
 void salvarDados(Regata regatas[], Barco barcos[], Participante participantes[], int totalRegatas, int totalBarcos, int totalParticipantes) {
     FILE *file = fopen("dados.txt", "w");
+    //caso o arquivo não possa ser aberto o programa exibe uma mensagem de erro.
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo para escrita.\n");
+        printf("Erro ao tentar escrever o arquivo.\n");
         return;
     }
 
@@ -41,7 +42,7 @@ void salvarDados(Regata regatas[], Barco barcos[], Participante participantes[],
 void carregarDados(Regata regatas[], Barco barcos[], Participante participantes[], int totalRegatas, int totalBarcos, int totalParticipantes) {
     FILE *file = fopen("dados.txt", "r");
     if (file == NULL) {
-        printf("Erro ao abrir o arquivo para leitura.\n");
+        printf("Erro ao ler o arquivo. \n");
         return;
     }
 
